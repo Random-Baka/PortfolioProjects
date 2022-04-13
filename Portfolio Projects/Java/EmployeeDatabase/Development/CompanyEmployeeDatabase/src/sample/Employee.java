@@ -153,9 +153,6 @@ public class Employee implements Comparable<Employee>
     {
         roleAndDepartment[0] = role == null ? roleAndDepartment[0] : role;
         roleAndDepartment[1] = department == null ? roleAndDepartment[1] : department;
-        System.out.println("The employee has been updated."
-                            +"\nUpdated Role: " + role
-                            +"\nUpdated Department: " + department);
     }
 
     /*
@@ -197,10 +194,8 @@ public class Employee implements Comparable<Employee>
     @Override
     public String toString()
     {
-        return String.format("%s, Their line manager is employee is: %s \n Their Role and Deparment: %s - %s"
-                            + "\nThier Salery: %d \nNI: %s"
-                            + "\nEmployee number: %d"
-        ,employeeName, lineManager, roleAndDepartment[0],roleAndDepartment[1], payPA,  nationalInsuranceNumber, employeeNumber);
+
+        return employeeName;
     }
 
     /*
@@ -214,13 +209,14 @@ public class Employee implements Comparable<Employee>
     public boolean equals(Object obj)
     {
         // Checks if classes are of equal class type, doesn't include children classes to be equal.
-        if(obj.getClass().equals(getClass()))
+        return false;
+        /*if(obj.getClass().equals(getClass()))
         {
           Employee e = (Employee) obj;
           // Assumes unique national insurance as no two people should have the same
           return e.getNationalInsuranceNumber().equals(getNationalInsuranceNumber());
           }
-        return false;
+        return false;*/
     }
     
     /*

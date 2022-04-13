@@ -16,7 +16,7 @@ import java.nio.*;
 import java.nio.file.Paths;
 public class Company
 {
-    private Set<Employee> employeesInCompany; // A set to hold employees
+    private TreeSet<Employee> employeesInCompany; // A set to hold employees
 
     /*
      * Constructor inits a TreeSet
@@ -29,6 +29,15 @@ public class Company
     public Company()
     {
         employeesInCompany = new TreeSet<>();
+    }
+
+    /*
+     *Getter method for Employees TreeSet
+     *
+     * @return TreeSet of employees in company
+     */
+    public TreeSet<Employee> getEmployeesInCompany() {
+        return employeesInCompany;
     }
 
     /*
@@ -184,12 +193,16 @@ public class Company
      * @return If the update was a success
      * 
      */
-    public boolean updateMember(int employeeNumber, String newLineManager)
+    public boolean updateMember(int employeeNumber, String newLineManager, String employeeName)
     {
         for(Employee employee : employeesInCompany)
         {
-            if(employee.getEmployeeNumber() == employeeNumber){
+            if(newLineManager != null && employee.getEmployeeNumber() == employeeNumber){
                 employee.setLineManager(newLineManager);
+                return true;
+            }
+            if(employeeName != null && employee.getEmployeeNumber() == employeeNumber){
+                employee.setEmployeeName(employeeName);
                 return true;
             }
         }

@@ -76,7 +76,7 @@ public class updateEmployeeController {
             case "Line Manager":
                 //Do Stuff
 
-                isDone = Main.companyX.updateMember(Integer.parseInt(updateUserID.getText()), searchVar.getText());
+                isDone = Main.companyX.updateMember(Integer.parseInt(updateUserID.getText()), searchVar.getText(), (String)null);
                 break;
 
             case "Role":
@@ -101,7 +101,11 @@ public class updateEmployeeController {
 
             case "NI":
                 //Do Stuff
-                isDone = Main.companyX.updateMember(Integer.parseInt(updateUserID.getText()), searchVar.getText(), null);
+                isDone = Main.companyX.updateMember(Integer.parseInt(updateUserID.getText()), searchVar.getText(), (Integer)null);
+                break;
+            case "Name":
+                //Do Stuff
+                isDone = Main.companyX.updateMember(Integer.parseInt(updateUserID.getText()), (String)null, searchVar.getText());
                 break;
             default:
                 //Do failure Stuff

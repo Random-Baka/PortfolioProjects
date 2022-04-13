@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="JavaFxApplication:jar2" />
+      <artifact name="employeeDatabase:jar" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
@@ -71,7 +71,7 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -145,8 +145,8 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/out/Manifest" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -180,8 +180,7 @@
     </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
-      <module name="JavaFxApplication" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <module name="employeeDatabase" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="sample.*" />

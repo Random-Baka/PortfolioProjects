@@ -1,4 +1,4 @@
-module JavaFxApplication {
+module employeeDatabase {
     requires javafx.fxml;
     requires javafx.controls;
 
