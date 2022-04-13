@@ -297,18 +297,25 @@ public class Company
      * @return A list of employees meeting the search criteria
      * 
      */
-    public TreeSet<Employee> selectMembers(int employeeNumber)
+    public TreeSet<Employee> selectMembers(Integer employeeNumber, Integer employeePay, TreeSet<Employee> updateSet) // Using Integer so we can send null
     {
-        TreeSet<Employee> foundEmployees = new TreeSet<>();
+        TreeSet<Employee> foundEmployees = updateSet == null ? new TreeSet<>() : updateSet;
         for(Employee employee : employeesInCompany)
         {
-            if(employee.getEmployeeNumber() == employeeNumber)
+            // These will break the checking if they are null, avoid nullpointer
+            if(employeeNumber != null && employee.getEmployeeNumber() == employeeNumber)
+            {
+                foundEmployees.add(employee);
+            }
+            if(employeeNumber != null && employee.getPayPA() == employeePay)
             {
                 foundEmployees.add(employee);
             }
         }
         return foundEmployees;
     }
+
+
 
     /*
      * Find a single Employee

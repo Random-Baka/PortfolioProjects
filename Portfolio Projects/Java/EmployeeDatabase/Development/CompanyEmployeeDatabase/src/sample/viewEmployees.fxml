@@ -2,12 +2,46 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <Button onAction="#switchToMainMenu" layoutX="87.0" layoutY="318.0" mnemonicParsing="false" text="Return to Main Menu" />
-      <Label layoutX="87.0" layoutY="42.0" text="View Employees" />
+      <Button layoutX="423.0" layoutY="640.0" mnemonicParsing="false" onAction="#switchToMainMenu" text="Return to Main Menu" />
+      <Label layoutX="488.0" layoutY="30.0" text="View Employees" textFill="#5d4eb2">
+         <font>
+            <Font name="Times New Roman Bold" size="36.0" />
+         </font></Label>
+      <Label layoutX="1004.0" layoutY="110.0" text="Filters" />
+      <TextField layoutX="947.0" layoutY="188.0" promptText="Enter Employee Number" />
+      <TextField layoutX="947.0" layoutY="248.0" promptText="Enter Line Manager" />
+      <TextField layoutX="947.0" layoutY="318.0" promptText="Enter Employee Role" />
+      <TextField layoutX="947.0" layoutY="384.0" promptText="Enter Employee Department" />
+      <TextField layoutX="910.0" layoutY="437.0" promptText="Min" scaleX="0.5" />
+      <TextField layoutX="999.0" layoutY="437.0" promptText="Max" scaleX="0.5" />
+      <Label layoutX="1021.0" layoutY="441.0" prefHeight="17.0" prefWidth="14.0" text=" -" textAlignment="JUSTIFY" />
+      <Label layoutX="959.0" layoutY="419.0" text="Employee Salary Range" />
+      <Label layoutX="961.0" layoutY="366.0" text="Employee Department" />
+      <Label layoutX="982.0" layoutY="300.0" text="Employee Role" />
+      <Label layoutX="954.0" layoutY="230.0" text="Employee Linea Manager" />
+      <Label layoutX="915.0" layoutY="170.0" text="Employee Number (Partial or Complete)" />
+      <TextField layoutX="946.0" layoutY="498.0" promptText="Enter NI" />
+      <Label layoutX="944.0" layoutY="480.0" prefHeight="17.0" prefWidth="154.0" text="Employee National Insurance" />
+      <ListView layoutX="377.0" layoutY="110.0" prefHeight="466.0" prefWidth="222.0" />
+      <Label layoutX="451.0" layoutY="92.0" text="Employee List" />
+      <Button layoutX="994.0" layoutY="558.0" mnemonicParsing="false" text="Submit" />
+      <Pane layoutX="630.0" layoutY="148.0" prefHeight="430.0" prefWidth="255.0">
+         <children>
+            <Label layoutX="31.0" layoutY="68.0" text="Name: " />
+            <Label layoutX="31.0" layoutY="113.0" text="Department: " />
+            <Label layoutX="31.0" layoutY="160.0" text="Role: " />
+            <Label layoutX="31.0" layoutY="207.0" text="Salary PA: " />
+            <Label layoutX="31.0" layoutY="252.0" text="Line Manager: " />
+            <Label layoutX="31.0" layoutY="301.0" text="Employee Number: " />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
