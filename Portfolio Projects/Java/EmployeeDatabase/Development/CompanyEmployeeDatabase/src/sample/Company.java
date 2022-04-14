@@ -7,22 +7,21 @@
  */
 package sample;
 
-import sample.Employee;
-
-import java.lang.reflect.Array;
-import java.util.*; // Figure out actualy import location
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*; // Figure out actually import location
 import java.io.*;
-import java.nio.*;
 import java.nio.file.Paths;
 public class Company
 {
-    private TreeSet<Employee> employeesInCompany; // A set to hold employees
+    private final TreeSet<Employee> employeesInCompany; // A set to hold employees
 
     /*
-     * Constructor inits a TreeSet
+     * Constructor init a TreeSet
      * 
      * TreeSet is selected for two reasons.
-     * 1.) It is sorted automaticaly based on the classes compareTo
+     * 1.) It is sorted automatically based on the classes compareTo
      * 2.) It does not allow duplicates, as we would only want to employ someone once, this is ideal.
      * 
      */
@@ -40,6 +39,11 @@ public class Company
         return employeesInCompany;
     }
 
+    /*public boolean setEmployeesInCompany(TreeSet<Employee> newSet) {
+        employeesInCompany = newSet;
+        return true;
+    }*/
+
     /*
      * Clears all employees out of the set.
      */
@@ -53,7 +57,7 @@ public class Company
     /*
      * Reorders the TreeSet after a variable used in sort order is changed
      * 
-     * Creates a copy of the company, clears the original and finaly adds old back in. 
+     * Creates a copy of the company, clears the original and finally adds old back in.
      * Not super efficient, but a simple solution.
      * 
      */
@@ -67,12 +71,12 @@ public class Company
     /*
      * Populates the database with several example employees
      * 
-     * Future: MAYBE ADD RANDOM NAMES, ETC WITH PROMPT OF QUANITY
+     * Future: MAYBE ADD RANDOM NAMES, ETC WITH PROMPT OF QUANTITY
      */
     public void populate()
     {
         // Please note, I don't know the rules for NI numbers and used mine as a reference. However, a Sting of letters/numbers
-        // should work regardless of posistioning.
+        // should work regardless of positioning.
 
         // REUSE OWN METHOD FOOL
         addMember(1, "A", 20000, "Clerk", "Accounting", "Bob", "John Smith");
@@ -87,27 +91,31 @@ public class Company
      * Prints whole database to a CSV with desired filename.
      * Saved to program root dir
      * 
-     * @param filename The name of the outut file
+     * @param filename The name of the output file
      */
-    public void writeCSVFile(String filename)
+    public int writeCSVFile(URI filename)
     {
-        // Trys to write with given name to root dir
-        try(FileWriter writer = new FileWriter(filename))
+        int amountSaved = 0;
+        Path path = Paths.get(filename);
+        // Tries to write with given name to root dir
+        try(BufferedWriter writer = Files.newBufferedWriter(path))
         {
             
             for(Employee employee : employeesInCompany)
             {
-                writer.write(employee.getNationalInsuranceNumber() + "," + employee.getPayPA() + "," + employee.getRoleAndDepartment()[0] + "," 
-                            + employee.getRoleAndDepartment()[1] + "," + employee.getLineManager());
+                writer.write(employee.getEmployeeNumber() + "," + employee.getNationalInsuranceNumber() + "," + employee.getPayPA() + "," + employee.getRoleAndDepartment()[0] + ","
+                            + employee.getRoleAndDepartment()[1] + "," + employee.getLineManager() + "," + employee.getEmployeeName());
                 writer.write('\n');
+                amountSaved++;
             }
-            
+
         }
         // FURTHER DEVELOP
         catch(IOException e)
         {
             System.out.println(e);
         }
+        return amountSaved;
     }
 
     /*
@@ -115,16 +123,18 @@ public class Company
      * 
      * @param filename The name of the file in the root dir
      */
-    public void readCSVFile(String filename)
+    public int readCSVFile(URI filename)
     {
-        // Trys to read the CSV file and creates a new employee for each line.
+        int amountAdded = 0;
+        // Tries to read the CSV file and creates a new employee for each line.
         try
         {
             Scanner employeeCSV = new Scanner(Paths.get(filename));
             
             while(employeeCSV.hasNextLine())
             {
-                String[] currentEmployee = employeeCSV.nextLine().split(","); // Splits the line and apllies the data to new employee
+                amountAdded++;
+                String[] currentEmployee = employeeCSV.nextLine().split(","); // Splits the line and applies the data to new employee
                 employeesInCompany.add(new Employee(Integer.parseInt(currentEmployee[0]),currentEmployee[1], Integer.parseInt(currentEmployee[2]), currentEmployee[3], currentEmployee[4], currentEmployee[5], currentEmployee[6]));
             }
         }
@@ -133,10 +143,12 @@ public class Company
         {
             System.out.println(e);
         }
+
+        return amountAdded;
     }
     
     /*
-     * Manualy add a new member to the database. If the database already contains said person then rejects the creation and informs
+     * Manually add a new member to the database. If the database already contains said person then rejects the creation and informs
      * the user.
      * 
      * @param nationInsuranceNumber The NI of the new employee
@@ -151,16 +163,9 @@ public class Company
         Employee newEmployee = new Employee(employeeNumber, nationalInsuranceNumber, payPA, role, department, lineManager, employeeName);
         if(employeesInCompany.contains(newEmployee))
         {
-            String outputS = String.format("The Employee: %s already appears to exist with NI: %s "
-                            + "\nCould not be added to the database.\nAlready exists."
-                            , employeeName, nationalInsuranceNumber);
-            System.out.println(outputS);
             return false;
         } else {
             employeesInCompany.add(newEmployee);
-            String outputS = String.format("The Employee: %s with NI: %s "
-                            + "\nHas been added to the database."
-                            , employeeName, nationalInsuranceNumber);
             return true;
         }
     }
@@ -213,7 +218,7 @@ public class Company
      * Method updateMember Overload Two
      * 
      * Updates a data point of an employee, uses employeeNumber to find employee
-     * If ethier of the data point in the list are null then that value is ignored, handled by employee method.
+     * If ether of the data point in the list are null then that value is ignored, handled by employee method.
      * 
      * @param employeeNumber Employee to be changed
      * @param newRoleAndDepartment A string list containing new role and/or department
@@ -249,7 +254,8 @@ public class Company
         }
         return false;
     }
-    
+
+
     /*
      * Method updateMember Overload Four
      * 
@@ -265,12 +271,12 @@ public class Company
         for(Employee employee : employeesInCompany) {
             if (employee.getEmployeeNumber() == employeeNumber) {
                 // Checks if the NI is being changed
-                if (!(employee.getNationalInsuranceNumber().equals(newNI)) && !(newNI == null)) {
+                if (!(newNI == null) && !(employee.getNationalInsuranceNumber().equals(newNI))) {
                     employee.setNationalInsuranceNumber(newNI);
                     reorderCompany();
                     return true;
                 }
-                if (!(employee.getEmployeeNumber() == newEmployeeNumber) && !(newEmployeeNumber == null)) {
+                if (!(newEmployeeNumber == null) && !(employee.getEmployeeNumber() == newEmployeeNumber)) {
                     employee.setEmployeeNumber(newEmployeeNumber);
                     reorderCompany();
                     return true;
@@ -279,56 +285,51 @@ public class Company
         }
         return false;
     }
-    
-    /*
-     * Method selectMembers Overload One
-     * 
-     * Finds employees with selected line manager
-     * 
-     * @param lineManagerFind The line manager to search for suborbinates of
-     * @return A list of employees meeting the search criteria
-     */
-    public TreeSet<Employee> selectMembers(String lineManagerFind)
-    {
-        TreeSet<Employee> foundEmployees = new TreeSet<>();
-        for(Employee employee : employeesInCompany)
-        {
-            if(employee.getLineManager().equals(lineManagerFind))
-            {
-                foundEmployees.add(employee);
-            }
-        }
-        return foundEmployees;
-    }
-    
-    /*
-     * Method selectMembers Overload Two
-     * 
-     * Finds employees with employeeNumber
-     * 
-     * @param employeeNumber The employee number to search for
-     * @return A list of employees meeting the search criteria
-     * 
-     */
-    public TreeSet<Employee> selectMembers(Integer employeeNumber, Integer employeePay, TreeSet<Employee> updateSet) // Using Integer so we can send null
-    {
-        TreeSet<Employee> foundEmployees = updateSet == null ? new TreeSet<>() : updateSet;
-        for(Employee employee : employeesInCompany)
-        {
-            // These will break the checking if they are null, avoid nullpointer
-            if(employeeNumber != null && employee.getEmployeeNumber() == employeeNumber)
-            {
-                foundEmployees.add(employee);
-            }
-            if(employeeNumber != null && employee.getPayPA() == employeePay)
-            {
-                foundEmployees.add(employee);
-            }
-        }
-        return foundEmployees;
-    }
 
+    /*
+     * Method to filter out by selected criteria and return a the results in a set
+     *
+     * @param filterConditions The conditions to filter out
+     * @return A set filtered down to meet criteria
+     */
+    public TreeSet<Employee> filterMembers(ArrayList<String> filterConditions) {
+        TreeSet<Employee> filtered = new TreeSet<>();
+        for(Employee employee : employeesInCompany) {
+            if(filterConditions.get(0) != null && employee.getEmployeeName().equals(filterConditions.get(0))){
+                filtered.add(employee);
+                continue;
+            }
+            if(filterConditions.get(1) != null && employee.getEmployeeNumber() == Integer.parseInt(filterConditions.get(1))){
+                filtered.add(employee);
+                continue;
+            }
+            if(filterConditions.get(2) != null && employee.getLineManager().equals(filterConditions.get(2))){
+                filtered.add(employee);
+                continue;
+            }
+            if(filterConditions.get(3) != null && employee.getRoleAndDepartment()[0].equals(filterConditions.get(3))){
+                filtered.add(employee);
+                continue;
+            }
+            if(filterConditions.get(4) != null && employee.getRoleAndDepartment()[1].equals(filterConditions.get(4))){
+                filtered.add(employee);
+                continue;
+            }
+            // Checks pay is in provided range, a little clunky, but whole method is clunky :)
+            if((filterConditions.get(5) != null && filterConditions.get(6) != null)
+                    && (employee.getPayPA() >= Integer.parseInt(filterConditions.get(5))
+                    && employee.getPayPA() <= Integer.parseInt(filterConditions.get(6)))){
+                filtered.add(employee);
+                continue;
+            }
+            if(filterConditions.get(7) != null && employee.getNationalInsuranceNumber().equals(filterConditions.get(7))){
+                filtered.add(employee);
+            }
 
+        }
+        return filtered;
+
+    }
 
     /*
      * Find a single Employee
@@ -353,40 +354,8 @@ public class Company
     }
     
     /*
-     * Method selectMembers Overload Three
-     * 
-     * Finds employees with a role, department or both.
-     * If one value is null it is ignored and other parameter is used as the selector.
-     * 
-     * @param role The role to select
-     * @param department The department to select
-     * @return A list of employees meeting the search criteria
-     * 
-     */
-    public TreeSet<Employee> selectMembers(String role, String department)
-    {
-        TreeSet<Employee> foundEmployees = new TreeSet<>();
-        for(Employee employee : employeesInCompany)
-        {
-            if(role == null){
-                if(employee.getRoleAndDepartment()[1].equals(department)){
-                    foundEmployees.add(employee);
-                }
-            } else if (department == null) {
-                if(employee.getRoleAndDepartment()[0].equals(role)){
-                    foundEmployees.add(employee);
-                }
-            } else {
-                if(employee.getRoleAndDepartment()[1].equals(department) && employee.getRoleAndDepartment()[0].equals(role)) {
-                    foundEmployees.add(employee);
-                }
-            }
-        }
-        return foundEmployees;
-    }
-    
-    /*
      * Prints formatted text detailing all employees in the company
+     * Error Finding Method
      */
     public void printMembers()
     {
@@ -397,6 +366,6 @@ public class Company
                             , employee.getRoleAndDepartment()[1], employee.getNationalInsuranceNumber());                
            System.out.println(outputS);
         }
-        System.out.println("");
+        System.out.println();
     }
 }

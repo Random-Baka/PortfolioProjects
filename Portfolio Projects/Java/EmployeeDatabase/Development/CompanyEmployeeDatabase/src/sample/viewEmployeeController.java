@@ -14,19 +14,19 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.TreeSet;
 
 public class viewEmployeeController {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     @FXML
     public Label nameView,departmentView,roleView,salaryView,lineManagerView,employeeNumberView,natInView;
-
+    @FXML
+    public TextField enterEmployeeNameView, enterEmployeeNumberView, enterEmployeeLMView, enterEmployeeRoleView;
+    @FXML
+    public TextField enterEmployeeDepView, enterMinSalView, enterMaxSalView, enterNIView;
     @FXML
     private ListView employeeView;
-    private TreeSet<Employee> employees;
 
     public void initialize() {
     }
@@ -34,33 +34,53 @@ public class viewEmployeeController {
     @FXML
     public void switchToMainMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public void populateListWithFresh() {
-        employees = Main.companyX.getEmployeesInCompany();
-        employeeView.getItems().setAll(employees);
-        employeeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
 
     @FXML
     public void clearView() {
         // Do clear
+        employeeView.getItems().clear();
     }
 
     @FXML
     public void populateView() {
-        employees = Main.companyX.getEmployeesInCompany();
+        TreeSet<Employee> employees = Main.companyX.getEmployeesInCompany();
         employeeView.getItems().setAll(employees);
         employeeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
 
     @FXML
-    public void findEmployees() {
+    public void filterEmployees() {
+        String name = enterEmployeeNameView.getText().equals("") ? null : enterEmployeeNameView.getText();
+        String number = enterEmployeeNumberView.getText().equals("") ? null : enterEmployeeNumberView.getText();
+        String lineMan = enterEmployeeLMView.getText().equals("") ? null : enterEmployeeLMView.getText();
+        String role = enterEmployeeRoleView.getText().equals("") ? null : enterEmployeeRoleView.getText();
+        String dep = enterEmployeeDepView.getText().equals("") ? null : enterEmployeeDepView.getText();
+        String min = enterMinSalView.getText().equals("") ? null : enterMinSalView.getText();
+        String max = enterMaxSalView.getText().equals("") ? null : enterMaxSalView.getText();
+        String ni = enterNIView.getText().equals("") ? null : enterNIView.getText();
+        ArrayList<String> filterConditions = new ArrayList<>();
+        Collections.addAll(filterConditions, name, number, lineMan, role, dep, min, max, ni);
+        TreeSet<Employee> filteredList = Main.companyX.filterMembers(filterConditions);
 
+        employeeView.getItems().setAll(filteredList);
+        employeeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        clearFilters();
+    }
+
+    private void clearFilters() {
+        enterEmployeeNameView.clear();
+        enterEmployeeNumberView.clear();
+        enterEmployeeLMView.clear();
+        enterEmployeeRoleView.clear();
+        enterEmployeeDepView.clear();
+        enterMinSalView.clear();
+        enterMaxSalView.clear();
+        enterNIView.clear();
     }
 
     @FXML
@@ -73,7 +93,5 @@ public class viewEmployeeController {
         lineManagerView.setText("Line Manager: " + employeeSelected.getLineManager());
         employeeNumberView.setText("Employee Number: " + employeeSelected.getEmployeeNumber());
         natInView.setText("NI Number: " + employeeSelected.getNationalInsuranceNumber());
-
-
     }
 }

@@ -12,32 +12,14 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class removeEmployeeController {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
     @FXML
     private TextField removeUserID;
     @FXML
-    private Label nameRemove;
-    @FXML
-    private Label departmentRemove;
-    @FXML
-    private Label roleRemove;
-    @FXML
-    private Label salaryRemove;
-    @FXML
-    private Label lineManagerRemove;
-    @FXML
-    private Label employeeNumberRemove;
-    @FXML
-    private Label hasRemoved;
-
-
+    private Label nameRemove,departmentRemove,roleRemove,salaryRemove,lineManagerRemove,employeeNumberRemove,hasRemoved;
 
     @FXML
     public void switchToMainMenu(ActionEvent event) throws IOException {
@@ -47,9 +29,9 @@ public class removeEmployeeController {
         salaryRemove.setText("Salary PA: ");
         lineManagerRemove.setText("Line Manager: ");
         employeeNumberRemove.setText("Employee Number: ");
-        Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainMenu.fxml")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
@@ -84,5 +66,11 @@ public class removeEmployeeController {
         lineManagerRemove.setText("Line Manager: ");
         employeeNumberRemove.setText("Employee Number: ");
         removeUserID.clear();
+    }
+
+    @FXML
+    public void clearDatabase() {
+        Main.companyX.clear();
+
     }
 }

@@ -1,64 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" gridLinesVisible="true" hgap="10" maxHeight="768.0" maxWidth="1200.0" prefHeight="768.0" prefWidth="1200.0" vgap="10" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
-    <Label style="-" text="Employee Database V1" textFill="blueviolet" GridPane.columnIndex="0" GridPane.rowIndex="0">
-        <font>
-            <Font name="Time New Roman bold" size="80" />
-        </font>
-    </Label>
-    <GridPane alignment="center" gridLinesVisible="true" hgap="10" prefHeight="236.0" prefWidth="810.0" vgap="10" GridPane.columnIndex="0" GridPane.rowIndex="1" xmlns:fx="http://javafx.com/fxml">
-        <padding>
-            <Insets top="10" />
-        </padding>
-        <columnConstraints>
-            <ColumnConstraints percentWidth="50.0" />
-            <ColumnConstraints percentWidth="50.0" />
-            <ColumnConstraints percentWidth="50.0" />
-            <ColumnConstraints percentWidth="50.0" />
-            <ColumnConstraints percentWidth="50.0" />
-        </columnConstraints>
-        <Button onAction="#switchToAddUser" text="Add Employee" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <Button onAction="#switchToRemoveUser" text="Remove Employee" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Button onAction="#switchToUpdateUser" text="Update Employee" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-        <Button onAction="#switchToViewEmployees" text="View Employees" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" />
-        <Button onAction="#populateDemoValues" text="Populate Demo Values" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-        <rowConstraints>
-            <RowConstraints />
-            <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="24.0" />
-            <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="26.0" />
-            <RowConstraints />
-        </rowConstraints>
-    </GridPane>
-    <GridPane alignment="center" gridLinesVisible="true" hgap="10" vgap="10" GridPane.columnIndex="0" GridPane.rowIndex="2" xmlns:fx="http://javafx.com/fxml">
-        <columnConstraints>
-            <ColumnConstraints percentWidth="50.0" />
-            <ColumnConstraints percentWidth="50.0" />
-            <ColumnConstraints percentWidth="50.0" />
-            <ColumnConstraints percentWidth="50.0" />
-        </columnConstraints>
-        <Button text="Save" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <Button text="Load" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-        <Button text="Export CSV" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-        <Button text="Import CSV" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-        <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-        </rowConstraints>
-    </GridPane>
-    <columnConstraints>
-        <ColumnConstraints />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints />
-        <RowConstraints />
-        <RowConstraints />
-    </rowConstraints>
-</GridPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+ <Label layoutX="161.0" layoutY="103.0" style="-" text="Employee Database V0.06" textFill="#1778b4">
+     <font>
+         <Font name="Times New Roman Bold Italic" size="80.0" />
+     </font>
+ </Label>
+  <Button layoutX="208.0" layoutY="249.0" onAction="#switchToAddUser" prefWidth="200.0" text="Add Employee" />
+  <Button layoutX="458.0" layoutY="249.0" onAction="#switchToRemoveUser" prefWidth="200.0" text="Remove Employee" />
+  <Button layoutX="708.0" layoutY="249.0" onAction="#switchToUpdateUser" prefWidth="200.0" text="Update Employee" />
+  <Button layoutX="208.0" layoutY="303.0" onAction="#switchToViewEmployees" prefWidth="700.0" text="View Employees" />
+  <Button layoutX="816.0" layoutY="399.0" onAction="#populateDemoValues" prefHeight="200" prefWidth="200" text="Populate Demo Employees" textAlignment="CENTER" textFill="#63d544" wrapText="true">
+      <font>
+         <Font name="Times New Roman" size="30.0" />
+      </font></Button>
+  <Button onAction="#switchToSaveLoad" layoutX="228.0" layoutY="436.0" prefHeight="125" prefWidth="125" text="Save/Load" />
+  <Button onAction="#switchToImportExport" layoutX="466.0" layoutY="436.0" prefHeight="125" prefWidth="125" text="Import/Export" />
+   <Label layoutX="894.0" layoutY="639.0" textFill="#5f9cff">
+      <font>
+         <Font name="Times New Roman" size="12.0" />
+      </font>
+   </Label>
+</AnchorPane>
