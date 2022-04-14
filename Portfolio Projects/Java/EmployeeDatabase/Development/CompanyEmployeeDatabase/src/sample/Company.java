@@ -77,14 +77,26 @@ public class Company
     {
         // Please note, I don't know the rules for NI numbers and used mine as a reference. However, a Sting of letters/numbers
         // should work regardless of positioning.
-
-        // REUSE OWN METHOD FOOL
-        addMember(1, "A", 20000, "Clerk", "Accounting", "Bob", "John Smith");
-        addMember(2,"F", 20000, "Clerk", "Accounting", "Bob", "John Smith");
-        addMember(3, "I", 20000, "Clerk", "Accounting", "Bob", "John Smith");
-        addMember(4,"OP 21 99 G", 20000, "Clerk", "Accounting", "Bob", "John Smith");
-        addMember(5,"II 87 22 R", 20000, "Clerk", "Accounting", "Bob", "John Smith");
-        System.out.println("Entered");
+        addMember(1, "AA 12 12 A", 22000, "Clerk", "Accounting", "Lucas Haynes", "John Smith");
+        addMember(2,"AB 21 21 V", 29000, "Sales Associate", "Sales", "Bob", "John Smith");
+        addMember(3, "HG 45 12 O", 21000, "Engineer", "Developments", "Bob", "John Smith");
+        addMember(4,"OP 21 99 G", 28000, "Sales Associate", "Sales", "Bob", "John Smith");
+        addMember(5,"II 87 22 R", 23000, "Sales Associate", "Sales", "Bob", "John Smith");
+        addMember(6, "UF 01 62 A", 21000, "Support Assistant", "Support", "Bob", "John Smith");
+        addMember(7,"HA 78 36 C", 27000, "Clerk", "Accounting", "Bob", "John Smith");
+        addMember(8, "BB 24 45 R", 21000, "Sales Associate", "Sales", "Bob", "John Smith");
+        addMember(9,"IE 12 59 K", 24000, "Clerk", "Accounting", "Bob", "John Smith");
+        addMember(10,"LO 88 85 T", 11000, "Engineer", "Developments", "Bob", "John Smith");
+        addMember(11, "BC 45 67 H", 45000, "Payroll Manager", "Accounting", "Bob", "John Smith");
+        addMember(12,"EJ 90 91 B", 23000, "Payroll Assistant", "Accounting", "Bob", "John Smith");
+        addMember(13, "KI 51 62 HO", 80000, "Accountant", "Accounting", "Bob", "John Smith");
+        addMember(14,"OO 21 33 C", 22000, "Trainee Accountant", "Accounting", "Bob", "John Smith");
+        addMember(15,"IL 87 22 L", 17000, "Support Assistant", "Support", "Bob", "John Smith");
+        addMember(16, "JJ 15 91 B", 30000, "Clerk", "Accounting", "Bob", "John Smith");
+        addMember(17,"IB 12 41 V", 44000, "Office Manager", "Developments", "Bob", "John Smith");
+        addMember(18, "UJ 83 69 OP", 35000, "Sales Manager", "Sales", "Bob", "John Smith");
+        addMember(19,"UJ 79 15 RE", 14000, "Sales Associate", "Sales", "Bob", "John Smith");
+        addMember(20,"CC 81 12 G", 29000, "Support Manager", "Support", "Bob", "John Smith");
     }
 
     /*
