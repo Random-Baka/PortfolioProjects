@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class Controller {
     private Stage stage;
@@ -19,7 +20,7 @@ public class Controller {
 
     @FXML
     public void switchToMainMenu(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainMenu.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -27,7 +28,7 @@ public class Controller {
     }
     @FXML
     public void switchToAddUser(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("addEmployee.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("addEmployee.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -35,7 +36,7 @@ public class Controller {
     }
     @FXML
     public void switchToRemoveUser(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("removeEmployee.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("removeEmployee.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -43,7 +44,7 @@ public class Controller {
     }
     @FXML
     public void switchToUpdateUser(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("updateEmployee.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("updateEmployee.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -51,7 +52,7 @@ public class Controller {
     }
     @FXML
     public void switchToViewEmployees(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("viewEmployees.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("viewEmployees.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -60,7 +61,7 @@ public class Controller {
 
     @FXML
     public void switchToImportExport(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("importExport.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("importExport.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -69,7 +70,7 @@ public class Controller {
 
     @FXML
     public void switchToSaveLoad(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("saveLoad.fxml"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("saveLoad.fxml")));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);

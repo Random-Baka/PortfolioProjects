@@ -9,39 +9,38 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Iterator;
+import java.util.Objects;
 
 public class saveLoadController {
-    private Stage stage;
-    private Scene scene;
     @FXML
     private AnchorPane saveLoad;
-    public File filenameLoad;
-    public File filenameSave;
-
+    public File filenameLoad,filenameSave;
 
     @FXML
     public void switchToMainMenu(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainMenu.fxml")));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void loadFromFile() throws IOException {
+    public void loadFromFile() {
         Main.companyX.clear();
         Path path = Paths.get(filenameLoad.toURI());
-        BufferedReader br = Files.newBufferedReader(path);
 
-        String input;
-        boolean completed;
-        int failCount = 0;
-        try {
+        try (BufferedReader br = Files.newBufferedReader(path)) {
+            String input;
+            boolean completed;
+            int failCount = 0;
             while ((input = br.readLine()) != null) {
                 String[] itemPieces = input.split("\t");
 
@@ -53,25 +52,20 @@ public class saveLoadController {
                 String empLM = itemPieces[5];
                 String empName = itemPieces[6];
 
-                completed = Main.companyX.addMember(Integer.parseInt(empNum), empNI,Integer.parseInt(empPay),empRole,empDep,empLM,empName);
+                completed = Main.companyX.addMember(Integer.parseInt(empNum), empNI, Integer.parseInt(empPay), empRole, empDep, empLM, empName);
                 if (!completed) failCount++;
             }
         } catch (Exception e) {
-          //Failed to Load
-        } finally {
-            br.close();
+            //Failed to Load
         }
     }
 
-    public void saveToFile() throws IOException {
+    public void saveToFile() {
         Path path = Paths.get(filenameSave.toURI());
 
-        BufferedWriter bw = Files.newBufferedWriter(path);
-        try {
-            Iterator<Employee> it = Main.companyX.getEmployeesInCompany().iterator();
-            while (it.hasNext()) {
+        try (BufferedWriter bw = Files.newBufferedWriter(path)) {
+            for (Employee employee : Main.companyX.getEmployeesInCompany()) {
                 System.out.println("Entered");
-                Employee employee = it.next();
                 bw.write(String.format("%d\t%s\t%d\t%s\t%s\t%s\t%s",
                         employee.getEmployeeNumber(),
                         employee.getNationalInsuranceNumber(),
@@ -84,8 +78,6 @@ public class saveLoadController {
             }
         } catch (Exception e) {
             // Failed to save
-        } finally {
-            bw.close();
         }
 
     }

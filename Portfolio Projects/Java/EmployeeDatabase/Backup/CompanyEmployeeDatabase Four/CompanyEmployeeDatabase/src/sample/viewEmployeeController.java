@@ -18,9 +18,6 @@ import java.util.Collections;
 import java.util.TreeSet;
 
 public class viewEmployeeController {
-    private Stage stage;
-    private Scene scene;
-    private TreeSet<Employee> employees;
 
     @FXML
     public Label nameView,departmentView,roleView,salaryView,lineManagerView,employeeNumberView,natInView;
@@ -37,8 +34,8 @@ public class viewEmployeeController {
     @FXML
     public void switchToMainMenu(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
@@ -51,7 +48,7 @@ public class viewEmployeeController {
 
     @FXML
     public void populateView() {
-        employees = Main.companyX.getEmployeesInCompany();
+        TreeSet<Employee> employees = Main.companyX.getEmployeesInCompany();
         employeeView.getItems().setAll(employees);
         employeeView.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
     }
