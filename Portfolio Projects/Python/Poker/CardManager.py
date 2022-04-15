@@ -1,29 +1,24 @@
 from random import shuffle
 
-class cardManager():
+class CardManager():
     def __init__(self) -> None:
         self.cardDeck = []
-        print("test")
         self.createDeck()
-
-    def main(self):
-        print("Test")
-        print(self.cardDeck)
         
     def createDeck(self, numOfDecks=1):
-        suitNames = ["Hearts", "Diamonds", "Clubs", "Spades"]
-        currentCard = 1
-        currentSuit = 0
-        numberOfDecks = numOfDecks
-        for x in range(0, 52 * numberOfDecks):
-            self.cardDeck.append({suitNames[currentSuit] : currentCard})
-            currentCard += 1
-            if currentCard == 14:
-                currentCard = 1
-                currentSuit += 1
+        self.suitNames = ["Hearts", "Diamonds", "Clubs", "Spades"]
+        self.currentCard = 1
+        self.currentSuit = 0
+        self.numberOfDecks = numOfDecks
+        for x in range(0, 52 * self.numberOfDecks):
+            self.cardDeck.append({self.suitNames[self.currentSuit] : self.currentCard})
+            self.currentCard += 1
+            if self.currentCard == 14:
+                self.currentCard = 1
+                self.currentSuit += 1
                 # Prep for more than one deck
-                if currentSuit > 3:
-                    currentSuit = 0
+                if self.currentSuit > 3:
+                    self.currentSuit = 0
         # Randomise card order
         shuffle(self.cardDeck)
 
@@ -31,7 +26,13 @@ class cardManager():
         return self.cardDeck.pop(0)
         
     def returnNewHand(self):
-        newHand = []
+        self.newHand = []
         for x in range(5):
-            newHand.append(self.returnTopCard())
-        return newHand
+            self.newHand.append(self.returnTopCard())
+        return self.newHand
+
+    def replaceCards(self, playersHand, replaceList):
+        for x in range(5):
+            if replaceList[x] != None:
+                playersHand[x] = self.returnTopCard()
+        return playersHand
