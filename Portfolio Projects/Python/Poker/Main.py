@@ -1,29 +1,38 @@
-from CardManager import CardManager
+from GameManager import GameManager
 
-class GameManager():
+class PlayGame():
 
     def __init__(self) -> None:
-        self.cardMan = CardManager()
-        self.cardMan.createDeck()
-        self.playerHand = self.cardMan.returnNewHand()
+      self.totalMoneyPool = 1000
+      self.stake = 0
+        
+    def getStake(self):
+        return self.stake
 
-    def dealRiver(self, centreDeck, cardAdd=1):
-        for x in range(cardAdd):
-            centreDeck.append(self.getCardManager().returnTopCard())
-        return centreDeck
+    def setStake(self, newStake):
+        self.stake = self.getTotalMoney() if newStake > self.getTotalMoney() else newStake
+        #self.setTotalMoney((self.getTotalMoney() - self.getStake()))
+        self.totalMoneyPool = self.totalMoneyPool - self.stake
 
-    def getPlayerHand(self):
-        return self.playerHand
-
-    def setPlayerHand(self, newPlayerHand):
-        self.playerHand = newPlayerHand
+    def getTotalMoney(self):
+        return self.totalMoneyPool
     
-    def getCardManager(self):
-        return self.cardMan
+    def setTotalMoney(self, newAmount):
+        self.getTotalMoney = newAmount
+    
+    def playRound(self):
+        pass
+
+    def playFullGame():
+        pass
 
 if __name__ == "__main__":
         #test = cardManager()
         #test.main()
+        playing = PlayGame()
+        while playing.getTotalMoney() > 0:
+           playing.setStake(int(input()))
+        print(playing.getTotalMoney())
         game = GameManager()
         print(game.getPlayerHand())
         centreCards = []
