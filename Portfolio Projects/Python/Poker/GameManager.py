@@ -7,7 +7,7 @@ class GameManager():
         self.cardMan.createDeck()
         self.playerHand = self.cardMan.returnNewHand()
 
-    def dealRiver(self, centreDeck, cardAdd=1):
+    def dealCentre(self, centreDeck, cardAdd=1):
         for x in range(cardAdd):
             centreDeck.append(self.getCardManager().returnTopCard())
         return centreDeck

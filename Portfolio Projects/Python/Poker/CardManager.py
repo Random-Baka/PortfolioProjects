@@ -4,6 +4,7 @@ class CardManager():
     def __init__(self) -> None:
         self.cardDeck = []
         self.createDeck()
+        self.centreDeck = []
         
     def createDeck(self, numOfDecks=1):
         self.suitNames = ["Hearts", "Diamonds", "Clubs", "Spades"]
@@ -24,7 +25,7 @@ class CardManager():
 
     def returnTopCard(self):
         return self.cardDeck.pop(0)
-        
+
     def returnNewHand(self):
         self.newHand = []
         for x in range(5):
