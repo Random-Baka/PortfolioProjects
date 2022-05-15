@@ -1,13 +1,13 @@
-import express from "express";
-import cors from "cors";
-import portfolio from "./api/portfolio,route.js"
+import express from "express"
+import cors from "cors"
+import restaurants from "./api/restaurants.route.js"
 
-const app = express();
+const app = express()
 
-app.use(cors());
-app.use(express.json());
+app.use(cors())
+app.use(express.json())
 
-app.use("/api/v1/portfolio", portfolio);
-app.use("*", (req, res) => res.status(404).json({ error: "not found, doesn't exist or I coded it wrong :O"}));
+app.use("/api/v1/restaurants", restaurants)
+app.use("*", (req, res) => res.status(404).json({ error: "not found"}))
 
 export default app
