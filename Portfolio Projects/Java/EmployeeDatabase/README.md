@@ -1,5 +1,9 @@
-This is a simple database built in Java. It stores Employees in a Company
+This is a simple database built in Java. 
+
+It stores Employees in a Company.
+
 Within the code I have used many different Java principles:
+
 Encapsulation
 Inheritence
 Polymorphism
