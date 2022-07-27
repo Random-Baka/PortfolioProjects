@@ -1,5 +1,4 @@
 from turtle import Turtle, setworldcoordinates, width
-from turtle import Screen
 from turtle import setup
 from turtle import *
 
@@ -34,12 +33,14 @@ class Maze:
         self.xTranslate = -columnsInMaze/2
         self.yTranslate = rowsInMaze/2
         self.t = Turtle(shape='turtle')
-        setup(width=600, height=600)
+        setup(width=700, height=700)
         setworldcoordinates(-(columnsInMaze-1)/2-.5,-(rowsInMaze-1)/2-.5,(columnsInMaze-1)/2+.5,(rowsInMaze-1)/2+.5)
+        self.screenExit = Screen()
         
 
 
     def drawMaze(self):
+        self.t.speed(10)
         for y in range(self.rowsInMaze):
             for x in range(self.columnsInMaze):
                 if self.mazelist[y][x] == OBSTACLE:
@@ -68,7 +69,7 @@ class Maze:
         self.t.goto(x+self.xTranslate,-y+self.yTranslate)
 
     def dropBreadcrumb(self, color):
-        self.t.dot(color)
+        self.t.dot(10, color)
 
     def updatePosition(self, row, col, val=None):
         if val:
