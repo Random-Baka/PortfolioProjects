@@ -5,7 +5,6 @@ import { Navbar } from "./components";
  
 const Home = () => (
   <div>
-    <h1>Test</h1>
     <Navbar />
     <Header />
     <Stats />
