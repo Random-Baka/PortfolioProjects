@@ -2,7 +2,10 @@ import React from 'react'
 
 const Stats = () => {
   return (
-    <div>Stats</div>
+    <div>
+      <div>Stats</div>
+      <div>Image of me :'</div>
+    </div>
   )
 }
 

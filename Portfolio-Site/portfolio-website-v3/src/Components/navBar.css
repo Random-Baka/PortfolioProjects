@@ -1,0 +1,60 @@
+header {
+    position: fixed;
+    width: 100%;
+    border-bottom: solid 1px #c6c1c1;
+    background-color: white;
+    padding: 2rem 1rem;
+  }
+
+
+
+.navBarContainer {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.namelogo { 
+    padding-top: 0.5rem;
+    text-transform: uppercase;
+    color: rgb(9, 98, 130);
+    font-size: 28px;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.nameSpan {
+    color: #c92a0d;
+    font-weight: 600;
+}
+
+
+.navBarContainer nav {
+    display: flex;
+}
+
+.navBarContainer nav ul {
+    box-sizing: inherit;
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0 2rem;
+    overflow: hidden;
+    align-items: center;
+    transition: max-height .2s ease-out;
+}
+
+a {
+    display: block;
+    padding: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    color:inherit;
+}
+
+li:hover {
+    background-color: rgb(199, 199, 201);
+}
+
+
+
