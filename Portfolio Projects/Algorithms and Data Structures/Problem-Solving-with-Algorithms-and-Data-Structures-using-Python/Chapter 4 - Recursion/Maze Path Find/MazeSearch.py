@@ -1,5 +1,7 @@
+from Maze import *
+
 def searchFrom(maze, startRow, startColumn):
-    maze.updadatePosition(startRow, startColumn)
+    maze.updatePosition(startRow, startColumn)
     # Check for base case one:
     # We have run into an obstacle, return false
     if maze[startRow][startColumn] == OBSTACLE:
